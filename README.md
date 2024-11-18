@@ -55,4 +55,3 @@ cria 3 cursos (courses);
 inscreve o aluno no curso de id 1
 adiciona 3 matérias (disciplines) no curso de id 1
 inscreve o aluno nas matérias de id 1,2,3
-Neste vídeoLinks to an external site. é possível ter uma idéia de como a sua execução ficará ao final do trabalho
