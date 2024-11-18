@@ -1,4 +1,4 @@
-# Trabalho: Automação da aplicação Web College ManagerLinks to an external site.
+# Trabalho: Automação da aplicação Web College Manager.
 Com a aplicação acessível via browser, explore-a um pouco para se familiarizar com ela
 Baixe este script base e tente executá-lo usando pytest
 Algumas partes do script vão falhar. Corrija-as antes de refatorar o código para um padrão de projeto.
