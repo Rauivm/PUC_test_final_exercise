@@ -37,9 +37,13 @@ Nota: Certifique-se de que o Python e o pip estão corretamente configurados no 
 
 ## Executando os Testes
 Navegue até o diretório que contém o arquivo de teste:
-`cd tests `
+```
+cd tests
+```
 Execute o script de teste com o Robot Framework:
-`robot -d .\logs .\College_manager.robot`
+```
+robot -d .\logs .\College_manager.robot`
+```
 Isso executará todos os casos de teste definidos no arquivo College_manager.robot.
 
 ## Descrição do trabalho:
