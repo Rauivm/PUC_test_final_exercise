@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.4 on win32)" generated="2024-11-18T20:22:03.399675" rpa="false" schemaversion="5">
+<suite id="s1" name="College manager" source="C:\PUC\robotframework\tests\College_manager.robot">
+<kw name="Abrir página inicial" owner="common" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:03.590953" level="INFO">Opening browser 'Chrome' to base url 'https://tdd-detroid.onrender.com/'.</msg>
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-11-18T20:22:03.590953" elapsed="2.229703"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-11-18T20:22:05.820656" elapsed="0.027000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-18T20:22:10.847940" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-18T20:22:05.847656" elapsed="5.000284"/>
+</kw>
+<kw name="Verifica se o College Manager foi aberto" owner="common">
+<kw name="Location Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:10.851940" level="INFO">Current location is 'https://tdd-detroid.onrender.com/'.</msg>
+<arg>${URL}</arg>
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<status status="PASS" start="2024-11-18T20:22:10.847940" elapsed="0.004000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:10.847940" elapsed="0.004000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:03.590953" elapsed="7.260987"/>
+</kw>
+<test id="s1-t1" name="Cenário Adicionar Estudante" line="9">
+<kw name="Given Eu preenchi o campo nome do estudante com douglas" owner="common" source_name="Eu preenchi o campo nome do estudante com ${name}">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_student}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-18T20:22:10.852942" elapsed="0.013001"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${name_student}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:10.865943" elapsed="0.025997"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:10.892941" level="INFO">Typing text 'douglas' into text field 'student-nome'.</msg>
+<arg>${name_student}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:10.891940" elapsed="0.050014"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:10.852942" elapsed="0.089012"/>
+</kw>
+<kw name="When Eu clicar em adicionar estudante" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:10.943956" level="INFO">Clicking button 'student-btn'.</msg>
+<arg>${btn_student}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:10.943956" elapsed="0.057478"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:10.942959" elapsed="0.058475"/>
+</kw>
+<kw name="Then verifica se o estudante douglas foi adicionado" owner="common" source_name="verifica se o ${tipo} ${name} foi adicionado">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.018433" level="INFO">${mensagem} = 2024-11-18 20:22:10.995000 INFO Added student id: 1, Name: douglas</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.002436" elapsed="0.015997"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.*INFO Added student id: \\d+, Name: ${name}.*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.019437" elapsed="0.000000"/>
+</kw>
+<arg>'${tipo}' == 'estudante'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added student id: \\d+, Name: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'curso'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'disciplina'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<arg>ELSE</arg>
+<arg>Fail</arg>
+<arg>Tipo de mensagem desconhecido: ${tipo}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.018433" elapsed="0.001004"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.002436" elapsed="0.017001"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:10.851940" elapsed="0.168494"/>
+</test>
+<test id="s1-t2" name="Cenário Adicionar Curso de Matemática" line="14">
+<kw name="Given Eu preenchi o campo nome do curso com Matemática" owner="common" source_name="Eu preenchi o campo nome do curso com ${name}">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_course}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.021436" elapsed="0.013007"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${name_course}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.034443" elapsed="0.019000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.054445" level="INFO">Typing text 'Matemática' into text field 'course-nome'.</msg>
+<arg>${name_course}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.054445" elapsed="0.051000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.021436" elapsed="0.084009"/>
+</kw>
+<kw name="When Eu clicar em adicionar curso" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.106443" level="INFO">Clicking button 'course-btn'.</msg>
+<arg>${btn_course}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.106443" elapsed="0.054630"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.105445" elapsed="0.055628"/>
+</kw>
+<kw name="Then verifica se o curso Matemática foi adicionado" owner="common" source_name="verifica se o ${tipo} ${name} foi adicionado">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.171071" level="INFO">${mensagem} = 2024-11-18 20:22:11.159000 INFO Added course id: 1, Nome: Matemática</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.162071" elapsed="0.009000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.172071" elapsed="0.000000"/>
+</kw>
+<arg>'${tipo}' == 'estudante'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added student id: \\d+, Name: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'curso'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'disciplina'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<arg>ELSE</arg>
+<arg>Fail</arg>
+<arg>Tipo de mensagem desconhecido: ${tipo}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.171071" elapsed="0.001000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.162071" elapsed="0.010000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.021436" elapsed="0.150635"/>
+</test>
+<test id="s1-t3" name="Cenário increver estudante no curso" line="19">
+<kw name="Given que Eu inscrevi o Estudante de ID: 1 no curso de ID: 1" owner="common" source_name="que Eu inscrevi o Estudante de ID: ${id_estudante} no curso de ID: ${id_curso}">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${id_student}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.174073" elapsed="0.009998"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_student}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.184071" elapsed="0.020000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.204071" level="INFO">Typing text '1' into text field 'student-id'.</msg>
+<arg>${id_student}</arg>
+<arg>${id_estudante}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.204071" elapsed="0.041002"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_course}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.245073" elapsed="0.021000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.267071" level="INFO">Typing text '1' into text field 'course-id'.</msg>
+<arg>${id_course}</arg>
+<arg>${id_curso}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.266073" elapsed="0.043998"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.174073" elapsed="0.135998"/>
+</kw>
+<kw name="When Eu clicar em inscrever estudante no curso" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.311071" level="INFO">Clicking button 'xpath=//input[@id="course-id"]/following-sibling::button'.</msg>
+<arg>${btn_subscribe_student}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.311071" elapsed="0.066001"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.310071" elapsed="0.067001"/>
+</kw>
+<kw name="Then Verifica se o estudante de ID: 1 foi adicionado ao curso de ID: 1" owner="common" source_name="Verifica se o estudante de ID: ${id_estudante} foi adicionado ao curso de ID: ${id_curso}">
+<kw name="Verificar Inscrição do Aluno ID: ${id_estudante} e curso id: ${id_curso}" owner="common" source_name="Verificar Inscrição do Aluno ID: ${id_estudante} e curso id: ${id_curso}">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.388073" level="INFO">${mensagem} = 2024-11-18 20:22:11.375000 INFO Student id 1 subscribed to course id 1</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.378072" elapsed="0.010001"/>
+</kw>
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.*INFO Student id ${id_estudante} subscribed to course id ${id_curso}*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.388073" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.378072" elapsed="0.010999"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.378072" elapsed="0.010999"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.173071" elapsed="0.216000"/>
+</test>
+<test id="s1-t4" name="Cenário Adicionar Curso de Geografia" line="24">
+<kw name="Given Eu preenchi o campo nome do curso com Geografia" owner="common" source_name="Eu preenchi o campo nome do curso com ${name}">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_course}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.390073" elapsed="0.007997"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${name_course}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.398070" elapsed="0.020003"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.418073" level="INFO">Typing text 'Geografia' into text field 'course-nome'.</msg>
+<arg>${name_course}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.418073" elapsed="0.049998"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.390073" elapsed="0.077998"/>
+</kw>
+<kw name="When Eu clicar em adicionar curso" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.469073" level="INFO">Clicking button 'course-btn'.</msg>
+<arg>${btn_course}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.469073" elapsed="0.044997"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.468071" elapsed="0.045999"/>
+</kw>
+<kw name="Then verifica se o curso Geografia foi adicionado" owner="common" source_name="verifica se o ${tipo} ${name} foi adicionado">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.525071" level="INFO">${mensagem} = 2024-11-18 20:22:11.512000 INFO Added course id: 2, Nome: Geografia</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.515073" elapsed="0.009998"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.526073" elapsed="0.000000"/>
+</kw>
+<arg>'${tipo}' == 'estudante'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added student id: \\d+, Name: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'curso'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'disciplina'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<arg>ELSE</arg>
+<arg>Fail</arg>
+<arg>Tipo de mensagem desconhecido: ${tipo}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.526073" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.515073" elapsed="0.011000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.390073" elapsed="0.136998"/>
+</test>
+<test id="s1-t5" name="Cenário Adicionar curso de Português" line="29">
+<kw name="Given Eu preenchi o campo nome do curso com Português" owner="common" source_name="Eu preenchi o campo nome do curso com ${name}">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_course}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.528073" elapsed="0.008000"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${name_course}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.536073" elapsed="0.019999"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.557074" level="INFO">Typing text 'Português' into text field 'course-nome'.</msg>
+<arg>${name_course}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.557074" elapsed="0.049997"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.528073" elapsed="0.078998"/>
+</kw>
+<kw name="When Eu clicar em adicionar curso" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.609072" level="INFO">Clicking button 'course-btn'.</msg>
+<arg>${btn_course}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.608071" elapsed="0.044000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.608071" elapsed="0.044000"/>
+</kw>
+<kw name="Then Verifica se o curso Português foi adicionado" owner="common" source_name="verifica se o ${tipo} ${name} foi adicionado">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.663072" level="INFO">${mensagem} = 2024-11-18 20:22:11.650000 INFO Added course id: 3, Nome: Português</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.652071" elapsed="0.011001"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.664073" elapsed="0.000000"/>
+</kw>
+<arg>'${tipo}' == 'estudante'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added student id: \\d+, Name: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'curso'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'disciplina'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<arg>ELSE</arg>
+<arg>Fail</arg>
+<arg>Tipo de mensagem desconhecido: ${tipo}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.663072" elapsed="0.001001"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.652071" elapsed="0.012002"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.527071" elapsed="0.137002"/>
+</test>
+<test id="s1-t6" name="Cenário Adicionar primeira disciplina no curso 1" line="34">
+<kw name="Given Eu preenchi o nome da disciplina GAAL e o Curso ID: 1" owner="common" source_name="Eu preenchi o nome da disciplina ${name} e o Curso ID: ${id}">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_discipline}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.666070" elapsed="0.012003"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${name_discipline}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.678073" elapsed="0.018997"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_discipline_course}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.697070" elapsed="0.021003"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.718073" level="INFO">Typing text 'GAAL' into text field 'discipline-nome'.</msg>
+<arg>${name_discipline}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.718073" elapsed="0.045998"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.764071" level="INFO">Typing text '1' into text field 'course-discipline-id'.</msg>
+<arg>${id_discipline_course}</arg>
+<arg>${id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.764071" elapsed="0.043002"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.666070" elapsed="0.141003"/>
+</kw>
+<kw name="When Eu clicar em adicionar disciplina" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.808071" level="INFO">Clicking button 'css=button[py-click="add_discipline()"]'.</msg>
+<arg>${btn_add_discipline}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.808071" elapsed="0.053003"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.808071" elapsed="0.053003"/>
+</kw>
+<kw name="Then verifica se o disciplina GAAL foi adicionado" owner="common" source_name="verifica se o ${tipo} ${name} foi adicionado">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.872074" level="INFO">${mensagem} = 2024-11-18 20:22:11.858000 INFO Added discipline id: 1, Name: GAAL, Course: 1</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.862071" elapsed="0.010003"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.873074" elapsed="0.000000"/>
+</kw>
+<arg>'${tipo}' == 'estudante'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added student id: \\d+, Name: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'curso'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'disciplina'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<arg>ELSE</arg>
+<arg>Fail</arg>
+<arg>Tipo de mensagem desconhecido: ${tipo}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.872074" elapsed="0.001000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.861074" elapsed="0.012000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.665070" elapsed="0.208004"/>
+</test>
+<test id="s1-t7" name="Cenário Adicionar segunda disciplina no curso 1" line="39">
+<kw name="Given Eu preenchi o nome da disciplina Grafos e o Curso ID: 1" owner="common" source_name="Eu preenchi o nome da disciplina ${name} e o Curso ID: ${id}">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_discipline}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.875073" elapsed="0.008001"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${name_discipline}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.883074" elapsed="0.018998"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_discipline_course}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.902072" elapsed="0.021000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.924073" level="INFO">Typing text 'Grafos' into text field 'discipline-nome'.</msg>
+<arg>${name_discipline}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.924073" elapsed="0.044000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:11.969071" level="INFO">Typing text '1' into text field 'course-discipline-id'.</msg>
+<arg>${id_discipline_course}</arg>
+<arg>${id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:11.969071" elapsed="0.043002"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.875073" elapsed="0.137000"/>
+</kw>
+<kw name="When Eu clicar em adicionar disciplina" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.013074" level="INFO">Clicking button 'css=button[py-click="add_discipline()"]'.</msg>
+<arg>${btn_add_discipline}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.013074" elapsed="0.047999"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.013074" elapsed="0.047999"/>
+</kw>
+<kw name="Then verifica se o disciplina Grafos foi adicionado" owner="common" source_name="verifica se o ${tipo} ${name} foi adicionado">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.072075" level="INFO">${mensagem} = 2024-11-18 20:22:12.059000 INFO Added discipline id: 2, Name: Grafos, Course: 1</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.061073" elapsed="0.011002"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.072075" elapsed="0.000999"/>
+</kw>
+<arg>'${tipo}' == 'estudante'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added student id: \\d+, Name: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'curso'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'disciplina'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<arg>ELSE</arg>
+<arg>Fail</arg>
+<arg>Tipo de mensagem desconhecido: ${tipo}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.072075" elapsed="0.000999"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.061073" elapsed="0.012001"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:11.874070" elapsed="0.199004"/>
+</test>
+<test id="s1-t8" name="Cenário Adicionar terceira disciplina no curso 1" line="44">
+<kw name="Given Eu preenchi o nome da disciplina Programacao e o Curso ID: 1" owner="common" source_name="Eu preenchi o nome da disciplina ${name} e o Curso ID: ${id}">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_discipline}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.074071" elapsed="0.007999"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${name_discipline}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.082070" elapsed="0.020001"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_discipline_course}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.102071" elapsed="0.020001"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.123073" level="INFO">Typing text 'Programacao' into text field 'discipline-nome'.</msg>
+<arg>${name_discipline}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.123073" elapsed="0.048999"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.173073" level="INFO">Typing text '1' into text field 'course-discipline-id'.</msg>
+<arg>${id_discipline_course}</arg>
+<arg>${id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.172072" elapsed="0.043002"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.074071" elapsed="0.141003"/>
+</kw>
+<kw name="When Eu clicar em adicionar disciplina" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.216072" level="INFO">Clicking button 'css=button[py-click="add_discipline()"]'.</msg>
+<arg>${btn_add_discipline}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.216072" elapsed="0.050830"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.215074" elapsed="0.051828"/>
+</kw>
+<kw name="Then verifica se o disciplina Programacao foi adicionado" owner="common" source_name="verifica se o ${tipo} ${name} foi adicionado">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.280337" level="INFO">${mensagem} = 2024-11-18 20:22:12.265000 INFO Added discipline id: 3, Name: Programacao, Course: 1</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.267902" elapsed="0.012435"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.281337" elapsed="0.000000"/>
+</kw>
+<arg>'${tipo}' == 'estudante'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added student id: \\d+, Name: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'curso'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'disciplina'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<arg>ELSE</arg>
+<arg>Fail</arg>
+<arg>Tipo de mensagem desconhecido: ${tipo}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.280337" elapsed="0.001000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.267902" elapsed="0.013435"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.074071" elapsed="0.207266"/>
+</test>
+<test id="s1-t9" name="Cenário Adicionar terceira disciplina no curso 1" line="49">
+<kw name="Given Eu preenchi o nome da disciplina Cálculo e o Curso ID: 1" owner="common" source_name="Eu preenchi o nome da disciplina ${name} e o Curso ID: ${id}">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_discipline}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.283336" elapsed="0.009003"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${name_discipline}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.292339" elapsed="0.018000"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_discipline_course}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.311339" elapsed="0.019602"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.331939" level="INFO">Typing text 'Cálculo' into text field 'discipline-nome'.</msg>
+<arg>${name_discipline}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.330941" elapsed="0.047994"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.379938" level="INFO">Typing text '1' into text field 'course-discipline-id'.</msg>
+<arg>${id_discipline_course}</arg>
+<arg>${id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.379938" elapsed="0.042751"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.283336" elapsed="0.139353"/>
+</kw>
+<kw name="When Eu clicar em adicionar disciplina" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.423689" level="INFO">Clicking button 'css=button[py-click="add_discipline()"]'.</msg>
+<arg>${btn_add_discipline}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.423689" elapsed="0.043997"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.423689" elapsed="0.043997"/>
+</kw>
+<kw name="Then verifica se o disciplina Cálculo foi adicionado" owner="common" source_name="verifica se o ${tipo} ${name} foi adicionado">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.478686" level="INFO">${mensagem} = 2024-11-18 20:22:12.466000 INFO Added discipline id: 4, Name: Cálculo, Course: 1</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.468687" elapsed="0.009999"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.479687" elapsed="0.000000"/>
+</kw>
+<arg>'${tipo}' == 'estudante'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added student id: \\d+, Name: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'curso'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added course id: \\d+, Nome: ${name}.*</arg>
+<arg>ELSE IF</arg>
+<arg>'${tipo}' == 'disciplina'</arg>
+<arg>Should Match Regexp</arg>
+<arg>${mensagem}</arg>
+<arg>.*INFO Added discipline id: \\d+, Name: ${name}, Course: \\d+.*</arg>
+<arg>ELSE</arg>
+<arg>Fail</arg>
+<arg>Tipo de mensagem desconhecido: ${tipo}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.478686" elapsed="0.001001"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.467686" elapsed="0.012001"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.283336" elapsed="0.197350"/>
+</test>
+<test id="s1-t10" name="Cenário Inscrever Estudante 1 na Matéria 1" line="54">
+<kw name="Given Eu inscrevi o estudante de ID: 1 na disciplina ID: 1" owner="common" source_name="Eu inscrevi o estudante de ID: ${id_estudante} na disciplina ID: ${id_disciplina}">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_student_subscribe}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.481689" elapsed="0.019997"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_discipline_subscribe}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.501686" elapsed="0.021002"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.522688" level="INFO">Typing text '1' into text field 'subscribe-student-id'.</msg>
+<arg>${id_student_subscribe}</arg>
+<arg>${id_estudante}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.522688" elapsed="0.040000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.563687" level="INFO">Typing text '1' into text field 'subscribe-discipline-id'.</msg>
+<arg>${id_discipline_subscribe}</arg>
+<arg>${id_disciplina}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.563687" elapsed="0.042001"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.481689" elapsed="0.123999"/>
+</kw>
+<kw name="When Eu clicar no botão de inscrição de disciplina" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.606687" level="INFO">Clicking button 'css=button[py-click="subscribe_discipline()"]'.</msg>
+<arg>${btn_subscribe_discipline}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.606687" elapsed="0.052002"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.606687" elapsed="0.052002"/>
+</kw>
+<kw name="Then Verifica se Estudante de ID: 1 foi inscrito na materia de ID: 1" owner="common" source_name="Verifica se Estudante de ID: ${id_estudante} foi inscrito na materia de ID: ${id_disciplina}">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.668686" level="INFO">${mensagem} = 2024-11-18 20:22:12.656000 WARN Aluno deve se inscrever em 3 materias no minimo</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.659689" elapsed="0.008997"/>
+</kw>
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.* WARN Aluno deve se inscrever em \\d+ materias no minimo.*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.668686" elapsed="0.001003"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.659689" elapsed="0.010000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.480686" elapsed="0.189003"/>
+</test>
+<test id="s1-t11" name="Cenário Inscrever Estudante 1 na Matéria 2" line="59">
+<kw name="Given Eu inscrevi o estudante de ID: 1 na disciplina ID: 2" owner="common" source_name="Eu inscrevi o estudante de ID: ${id_estudante} na disciplina ID: ${id_disciplina}">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_student_subscribe}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.671688" elapsed="0.020000"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_discipline_subscribe}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.691688" elapsed="0.022001"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.714687" level="INFO">Typing text '1' into text field 'subscribe-student-id'.</msg>
+<arg>${id_student_subscribe}</arg>
+<arg>${id_estudante}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.713689" elapsed="0.043000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.757687" level="INFO">Typing text '2' into text field 'subscribe-discipline-id'.</msg>
+<arg>${id_discipline_subscribe}</arg>
+<arg>${id_disciplina}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.756689" elapsed="0.042000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.670690" elapsed="0.127999"/>
+</kw>
+<kw name="When Eu clicar no botão de inscrição de disciplina" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.799689" level="INFO">Clicking button 'css=button[py-click="subscribe_discipline()"]'.</msg>
+<arg>${btn_subscribe_discipline}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.799689" elapsed="0.047997"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.798689" elapsed="0.048997"/>
+</kw>
+<kw name="Then Verifica se Estudante de ID: 1 foi inscrito na materia de ID: 2" owner="common" source_name="Verifica se Estudante de ID: ${id_estudante} foi inscrito na materia de ID: ${id_disciplina}">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.858688" level="INFO">${mensagem} = 2024-11-18 20:22:12.846000 WARN Aluno deve se inscrever em 3 materias no minimo</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.848686" elapsed="0.010002"/>
+</kw>
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.* WARN Aluno deve se inscrever em \\d+ materias no minimo.*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.858688" elapsed="0.000999"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.847686" elapsed="0.012001"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.670690" elapsed="0.188997"/>
+</test>
+<test id="s1-t12" name="Cenário Inscrever Estudante 1 na Matéria 3" line="64">
+<kw name="Given Eu inscrevi o estudante de ID: 1 na disciplina ID: 3" owner="common" source_name="Eu inscrevi o estudante de ID: ${id_estudante} na disciplina ID: ${id_disciplina}">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_student_subscribe}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.860689" elapsed="0.020998"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${id_discipline_subscribe}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.881687" elapsed="0.021999"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.904686" level="INFO">Typing text '1' into text field 'subscribe-student-id'.</msg>
+<arg>${id_student_subscribe}</arg>
+<arg>${id_estudante}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.904686" elapsed="0.043003"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.948687" level="INFO">Typing text '3' into text field 'subscribe-discipline-id'.</msg>
+<arg>${id_discipline_subscribe}</arg>
+<arg>${id_disciplina}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.947689" elapsed="0.043000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.860689" elapsed="0.130000"/>
+</kw>
+<kw name="When Eu clicar no botão de inscrição de disciplina" owner="common">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:12.991686" level="INFO">Clicking button 'css=button[py-click="subscribe_discipline()"]'.</msg>
+<arg>${btn_subscribe_discipline}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:12.991686" elapsed="0.048004"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.990689" elapsed="0.049001"/>
+</kw>
+<kw name="Then Verifica se Estudante de ID: 1 foi inscrito na disciplina de ID: 3" owner="common" source_name="Verifica se Estudante de ID: ${id_estudante} foi inscrito na disciplina de ID: ${id_curso}">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-11-18T20:22:13.049690" level="INFO">${mensagem} = 2024-11-18 20:22:13.037000 INFO Student id 1, Name douglas subscribed to discipline id 3</msg>
+<var>${mensagem}</var>
+<arg>${events}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-18T20:22:13.040691" elapsed="0.008999"/>
+</kw>
+<kw name="Should Match Regexp" owner="BuiltIn">
+<arg>${mensagem}</arg>
+<arg>.*INFO Student id ${id_estudante}, Name douglas subscribed to discipline id ${id_curso}*</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" start="2024-11-18T20:22:13.049690" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:13.040691" elapsed="0.009996"/>
+</kw>
+<status status="PASS" start="2024-11-18T20:22:12.860689" elapsed="0.189998"/>
+</test>
+<status status="PASS" start="2024-11-18T20:22:03.401675" elapsed="9.650012"/>
+</suite>
+<statistics>
+<total>
+<stat pass="12" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="12" fail="0" skip="0" id="s1" name="College manager">College manager</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-11-18T20:22:12.282336" level="WARN">Multiple tests with name 'Cenário Adicionar terceira disciplina no curso 1' executed in suite 'College manager'.</msg>
+</errors>
+</robot>

@@ -65,21 +65,3 @@ Cenário Inscrever Estudante 1 na Matéria 3
     Given Eu inscrevi o estudante de ID: 1 na disciplina ID: 3
     When Eu clicar no botão de inscrição de disciplina
     Then Verifica se Estudante de ID: 1 foi inscrito na disciplina de ID: 3
-
-Cenário Inscrever Estudante 1 na Matéria 4
-    Given Eu inscrevi o estudante de ID: 1 na disciplina ID: 4
-    When Eu clicar no botão de inscrição de disciplina
-    Then Verifica se Estudante de ID: 1 foi inscrito na disciplina de ID: 4
-
-# Gerenciar College
-#     Adicionar Estudante douglas
-#     Adicionar Curso mat
-#     Inscrever Estudante ID: 1 no curso ID: 1
-#     Adicionar Disciplina mat id 1
-#     Adicionar Curso por
-#     Adicionar Curso geo
-#     Adicionar Disciplina mat id 1
-#     Adicionar Estudante ID: 1 e Disciplina ID: 1
-#     Inscrever Estudante ID: 1 no curso ID: 2
-#     Inscrever Estudante ID: 1 no curso ID: 3
-#     Adicionar Estudante ID: 1 e Disciplina ID: 1
