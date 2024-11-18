@@ -48,10 +48,10 @@ Isso executará todos os casos de teste definidos no arquivo College_manager.rob
 
 ## Descrição do trabalho:
 
-Trabalho: Automação da aplicação Web College ManagerLinks to an external site.
-[link](https://tdd-detroid.onrender.com/)
-cria um aluno (student)
-cria 3 cursos (courses);
-inscreve o aluno no curso de id 1
-adiciona 3 matérias (disciplines) no curso de id 1
-inscreve o aluno nas matérias de id 1,2,3
+### Trabalho: Automação da aplicação Web College ManagerLinks to an external site.
+* [link](https://tdd-detroid.onrender.com/)
+* cria um aluno (student)
+* cria 3 cursos (courses);
+* inscreve o aluno no curso de id 1
+* adiciona 3 matérias (disciplines) no curso de id 1
+* inscreve o aluno nas matérias de id 1,2,3
